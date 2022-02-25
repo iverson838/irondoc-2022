@@ -10,17 +10,15 @@ let spaceTimer = 0;
 class Ball {
     constructor(gameBall){
         this.game = gameBall;
-
     }
 
     draw(){
         this.game.context.save();
         this.game.context.beginPath();
-        this.game.context.arc(800,200, 0, 2*Math.PI);
+        this.game.context.arc(200,200, 0, 2*Math.PI);
         this.game.context.closePath();
-        this.game.context.fill();
 
-        this.game.context.restore();
+        this.game.context.fill()
     }
 }
 
@@ -81,7 +79,7 @@ class Game {
     //conector to player class, creates a new player object and saves into this.player?
     //
     this.player = new Player(this);
-    this.ball = new Ball (this);
+    this.ball = new Ball (this)
     this.enableControls();
     this.shoots = [];
   }
@@ -140,7 +138,6 @@ class Game {
   draw() {
     this.context.clearRect(0, 0, canvasBoard.width, canvasBoard.height);
     this.player.draw();
-    this.ball.draw();
 
     for (const shoot of this.shoots) {
       shoot.draw();
@@ -151,7 +148,6 @@ class Game {
 const game = new Game(canvasBoard);
 
 game.player.draw();
-game.ball.draw();
 
 game.loop();
 
