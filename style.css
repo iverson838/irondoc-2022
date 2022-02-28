@@ -25,7 +25,9 @@ body {
 
 }
 canvas {
-    background-color: aquamarine;
-    width: 1200px;
+  background-image: url('./girl-with-red-hat-BBZDOHhYU2s-unsplash.jpg');
+  background-position: center;
+  background-size: cover;
+   width: 1200px;
     height: 720px;
 }

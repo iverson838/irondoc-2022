@@ -6,10 +6,10 @@ class Ball {
       this.game = gameBall;
       
       this.gravity = 3;
-      this.gravityx = 4;
+      this.gravityx = 5;
       this.radius = 50;
-      this.startingPointy = Math.floor(Math.random() * (600 - 200)) + 200;
-      this.startingPointx = Math.floor(Math.random() * this.game.maxWidth);
+      this.startingPointy = Math.floor(Math.random() * (500 - 200)) + 200;
+      this.startingPointx = Math.floor(Math.random() * 1200);
       
     }
   
@@ -29,7 +29,7 @@ class Ball {
         this.startingPointx += this.gravityx
         
 
-        if(this.startingPointy > 800 || this.startingPointy < 300){
+        if(this.startingPointy > 800 || this.startingPointy < 150){
            this.gravity *= -1
 
             

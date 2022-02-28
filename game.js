@@ -7,7 +7,8 @@ canvasBoard.height = window.innerHeight;
 
 let spaceTimer = 0;
 
-
+const lasershoot = new Audio('./lasershoot.wav');
+const newball = new Audio('./pop.wav');
 
 class Game {
   constructor(canvasBoard) {
@@ -21,13 +22,13 @@ class Game {
     this.enableControls();
     this.shoots = [];
     this.ball = [new Ball(this)];
-
-    console.log(typeof this.maxHeight);
   }
 
   gerateBall() {
     const ball = new Ball(this);
+    newball.play();
     this.ball.push(ball);
+    
   }
 
   loop() {
@@ -79,6 +80,7 @@ class Game {
   }
 
   shoot() {
+    lasershoot.play();
     const shoot = new Shoot(
       this,
       this.player.x + this.player.widthPlayer / 2,
@@ -115,11 +117,8 @@ class Game {
   }
 }
 
-
 const game = new Game(canvasBoard);
 
 game.player.draw();
 
 game.loop();
-
-

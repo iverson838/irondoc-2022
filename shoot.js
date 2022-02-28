@@ -22,22 +22,22 @@ class Shoot {
     runLogic() {
       this.y -= 3;
 
-    // for (let i=0 ; i<this.game.shoots.length;i++){
-    //     this.checkIntersection2()
-    // }
+     for (let i=0 ; i<this.game.shoots.length;i++){
+         this.checkIntersection2()
+    }
 
     }
 
-    // checkIntersection2() {
+     checkIntersection2() {
   
-    //   if(this.x + this.width > this.game.ball.startingPointx && this.x < this.game.ball.startingPointx + this.game.ball.radius
-    //    && this.y + this.height >this.game.ball.startingPointy && this.y < this.game.ball.startingPointy + this.game.ball.radius) {
-    //      alert('game loose')
-    //    }
+     if(this.x + this.width > this.game.ball.startingPointx && this.x < this.game.ball.startingPointx + this.game.ball.radius
+      && this.y + this.height >this.game.ball.startingPointy && this.y < this.game.ball.startingPointy + this.game.ball.radius) {
+        alert('game loose')
+      }
  
         
    
-    // }
+    }
 
 
     
