@@ -1,6 +1,6 @@
-const ballImage = new Image();
-ballImage.src = './img/virus.png'
 
+    
+  
 class Ball {
     constructor(gameBall) {
       this.game = gameBall;
@@ -10,18 +10,57 @@ class Ball {
       this.radius = 50;
       this.startingPointy = Math.floor(Math.random() * (500 - 200)) + 200;
       this.startingPointx = Math.floor(Math.random() * 1200);
+
+      
       
     }
   
     draw() {
+
+      
+      
       this.game.context.save();
       //this.game.context.drawImage(ballImage,this.startingPointx, this.startingPointy, this.radius, 0, 2 * Math.PI)
       this.game.context.beginPath();
+      // ballImage.onload = function() {
+      //   this.game.context.drawImage(ballImage,0,0);
+      // }
       this.game.context.arc(this.startingPointx, this.startingPointy, this.radius, 0, 2 * Math.PI);
       this.game.context.closePath();
-      this.game.context.fill();
+      
+       this.game.context.fill();
+      var image = new Image();
+  image.src = 'http://www.monkey-and-banana.com/wp-content/uploads/2009/10/star-wars-droids.jpg'
+      image.onload = () => {
+
+      this.game.context.save();
+      this.game.context.globalCompositeOperation = 'source-in';
+      this.game.context.drawImage(image, 0,0);
+      this.game.context.restore();
+};
+//       function make_base()
+// {
+//   base_image = new Image();
+//   base_image.src = 'img/base.png';
+//   base_image.onload = function(){
+//     context.drawImage(base_image, 0, 0);
+//   }
+// }
       
     }
+
+     createImg(){
+
+      const ballImage = new Image();
+      ballImage.src = './img/virus.png'
+      ballImage.onload = function(){
+        this.game.context.drawImage(ballImage, 0, 0);
+      }
+    }
+
+
+
+    
   
       runLogic() {
   

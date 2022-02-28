@@ -29,13 +29,19 @@ class Shoot {
     }
 
      checkIntersection2() {
+
+      for(let i=0; i< this.game.ball.length;i++){
   
-     if(this.x + this.width > this.game.ball.startingPointx && this.x < this.game.ball.startingPointx + this.game.ball.radius
-      && this.y + this.height >this.game.ball.startingPointy && this.y < this.game.ball.startingPointy + this.game.ball.radius) {
-        alert('game loose')
+     if(this.x + this.width > this.game.ball[i].startingPointx && this.x < this.game.ball[i].startingPointx + this.game.ball[i].radius
+      && this.y + this.height >this.game.ball[i].startingPointy && this.y < this.game.ball[i].startingPointy + this.game.ball[i].radius) {
+      
+        this.game.ball.splice(i,1)
       }
+    }
+     
+     
  
-        
+        console.log('teste')
    
     }
 
