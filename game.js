@@ -5,10 +5,10 @@ document.body.appendChild(canvasBoard);
 canvasBoard.width = window.innerWidth;
 canvasBoard.height = window.innerHeight;
 
-let spaceTimer = 0;
 
-const lasershoot = new Audio('./lasershoot.wav');
-const newball = new Audio('./pop.wav');
+let spaceTimer = 0;
+const lasershoot = new Audio('./sounds/lasershoot.wav');
+const newball = new Audio('./sounds/pop.wav');
 
 class Game {
   constructor(canvasBoard) {
@@ -22,13 +22,32 @@ class Game {
     this.enableControls();
     this.shoots = [];
     this.ball = [new Ball(this)];
+    
+    
   }
+
+ 
 
   gerateBall() {
     const ball = new Ball(this);
     newball.play();
     this.ball.push(ball);
-    
+  }
+
+  generateTinyBall(dir, x, y) {
+    let ball = new Ball(this);
+    newball.play();
+
+    ball.radius = 25;
+    ball.startingPointy = y;
+    ball.startingPointx = x;
+    ball.gravityx = dir;
+    this.ball.push(ball);
+  }
+
+  gerateBall2() {
+    const ball2 = new Ball2(this);
+    this.ball2.push(ball2);
   }
 
   loop() {
@@ -67,14 +86,14 @@ class Game {
 
         case 'Space':
           let diference = timeSeconds - spaceTimer;
-          console.log(diference);
-
-          if (diference > 0.7) {
+           if(diference < 0){
+             diference = 0;
+          } else {
+          if (diference > 0.5) {
             this.shoot();
             spaceTimer = timeSeconds;
           }
-
-          break;
+        }
       }
     });
   }
@@ -103,6 +122,7 @@ class Game {
     this.context.font = '64px monospace';
     this.context.fillText(this.score, 100, 900);
   }
+
   draw() {
     this.context.clearRect(0, 0, canvasBoard.width, canvasBoard.height);
     this.player.draw();

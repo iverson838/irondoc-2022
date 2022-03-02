@@ -1,5 +1,6 @@
-
-    
+const gameOver = new Audio('./sounds/game-over.wav')
+   const image = new Image();
+  image.src = './img/virus.png'
   
 class Ball {
     constructor(gameBall) {
@@ -20,49 +21,25 @@ class Ball {
       
       
       this.game.context.save();
-      //this.game.context.drawImage(ballImage,this.startingPointx, this.startingPointy, this.radius, 0, 2 * Math.PI)
-      this.game.context.beginPath();
-      // ballImage.onload = function() {
-      //   this.game.context.drawImage(ballImage,0,0);
-      // }
-      this.game.context.arc(this.startingPointx, this.startingPointy, this.radius, 0, 2 * Math.PI);
-      this.game.context.closePath();
+      //this.game.context.drawImage(ballImage,this.startingPointx, this.startingPointy, this.radius*2, this.radius*2)
+      // this.game.context.beginPath();
+      // // ballImage.onload = function() {
+      // //   this.game.context.drawImage(ballImage,0,0);
+      // // }
+      // this.game.context.arc(this.startingPointx, this.startingPointy, this.radius, 0, 2 * Math.PI);
+      // this.game.context.closePath();
       
-       this.game.context.fill();
-      var image = new Image();
-  image.src = 'http://www.monkey-and-banana.com/wp-content/uploads/2009/10/star-wars-droids.jpg'
-      image.onload = () => {
-
-      this.game.context.save();
-      this.game.context.globalCompositeOperation = 'source-in';
-      this.game.context.drawImage(image, 0,0);
+      //  this.game.context.fill();
+   
+     
+      this.game.context.drawImage(image, this.startingPointx,this.startingPointy,67,68);
       this.game.context.restore();
-};
-//       function make_base()
-// {
-//   base_image = new Image();
-//   base_image.src = 'img/base.png';
-//   base_image.onload = function(){
-//     context.drawImage(base_image, 0, 0);
-//   }
-// }
+
+
       
     }
 
-     createImg(){
-
-      const ballImage = new Image();
-      ballImage.src = './img/virus.png'
-      ballImage.onload = function(){
-        this.game.context.drawImage(ballImage, 0, 0);
-      }
-    }
-
-
-
-    
-  
-      runLogic() {
+        runLogic() {
   
         this.startingPointy += this.gravity
         this.startingPointx += this.gravityx
@@ -93,6 +70,7 @@ class Ball {
   
         if(this.game.player.x + this.game.player.widthPlayer > this.startingPointx && this.game.player.x < this.startingPointx + this.radius
          && this.game.player.y + this.game.player.heightPlayer >this.startingPointy && this.game.player.y < this.startingPointy + this.radius) {
+          gameOver.play();
            alert('game loose')
          }
   
