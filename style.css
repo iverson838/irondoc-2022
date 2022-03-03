@@ -16,8 +16,8 @@ body {
 
 .screen {
   background-color: gray;
-  width: 500px;
-  height: 500px;
+  width: 1400px;
+  height: 800px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,6 +28,5 @@ canvas {
   background-image: url('./girl-with-red-hat-BBZDOHhYU2s-unsplash.jpg');
   background-position: center;
   background-size: cover;
-   width: 1200px;
-    height: 720px;
+
 }

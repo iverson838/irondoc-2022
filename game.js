@@ -1,9 +1,6 @@
 //create a DOM element
-const canvasBoard = document.createElement('canvas');
-document.body.appendChild(canvasBoard);
 
-canvasBoard.width = window.innerWidth;
-canvasBoard.height = window.innerHeight;
+
 
 
 let spaceTimer = 0;
@@ -11,22 +8,36 @@ const lasershoot = new Audio('./sounds/lasershoot.wav');
 const newball = new Audio('./sounds/pop.wav');
 
 class Game {
-  constructor(canvasBoard) {
+  constructor(canvasBoard,screens) {
     this.canvas = canvasBoard;
     this.context = canvasBoard.getContext('2d');
-    //conector to player class, creates a new player object and saves into this.player?
-    this.maxWidth = canvasBoard.width;
-    this.maxHeight = canvasBoard.height;
+    this.screens = screens;
+    this.running = false;
     this.score = 0;
     this.player = new Player(this);
-    this.enableControls();
     this.shoots = [];
     this.ball = [new Ball(this)];
-    
-    
+    this.enableControls(); 
+  }
+  start () {
+    this.running = true;
+   
+    this.displayScreen('playing');
+
+    this.loop();
   }
 
- 
+  displayScreen (name) {
+    for (let screenName in this.screens) {
+      this.screens[screenName].style.display = 'none'
+    }
+    this.screens[name].style.display = '';
+  }
+
+  lose () {
+    this.running = false;
+    this.displayScreen('end');
+  }
 
   gerateBall() {
     const ball = new Ball(this);
@@ -38,7 +49,7 @@ class Game {
     let ball = new Ball(this);
     newball.play();
 
-    ball.radius = 25;
+    ball.radius = 15;
     ball.startingPointy = y;
     ball.startingPointx = x;
     ball.gravityx = dir;
@@ -59,9 +70,11 @@ class Game {
 
       this.draw();
 
-      if (Math.floor(Math.random() * 1000) > 997) {
+      if (Math.floor(Math.random() * 1000) > 996) {
         this.gerateBall();
       }
+      
+game.player.draw();
       this.loop();
     });
   }
@@ -77,11 +90,14 @@ class Game {
 
       switch (code) {
         case 'ArrowRight':
-          this.player.x += 10;
+          if(this.player.x < 1250)
+          this.player.x += 20;
           break;
 
         case 'ArrowLeft':
-          this.player.x -= 10;
+          if(this.player.x > 0) {
+          this.player.x -= 20;
+        }
           break;
 
         case 'Space':
@@ -89,12 +105,16 @@ class Game {
            if(diference < 0){
              diference = 0;
           } else {
-          if (diference > 0.5) {
+          if (diference > 0.3) {
             this.shoot();
             spaceTimer = timeSeconds;
           }
         }
+        console.log(diference)
+        console.log(spaceTimer)
+        break;
       }
+      
     });
   }
 
@@ -119,8 +139,10 @@ class Game {
   }
 
   drawScore() {
-    this.context.font = '64px monospace';
-    this.context.fillText(this.score, 100, 900);
+    this.context.fillStyle = 'white'
+    this.context.font = '40px monospace';
+    
+    this.context.fillText(`Virus Killed: ${this.score}`, 30, 740);
   }
 
   draw() {
@@ -137,8 +159,7 @@ class Game {
   }
 }
 
-const game = new Game(canvasBoard);
 
-game.player.draw();
 
-game.loop();
+//game.loop();
+

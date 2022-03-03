@@ -1,24 +1,26 @@
+const syringe = new Image();
+syringe.src = './img/syringe.png';
+
 class Shoot {
   constructor(gameInstance, x, y) {
     this.game = gameInstance;
     this.x = x;
     this.y = y;
-    this.width = 5;
-    this.height = 20;
+    this.width = 20;
+    this.height = 40;
   }
 
   draw() {
     this.game.context.save();
-    //paint yellow
-    this.game.context.fillStyle = 'yellow';
-    //draw a square
+
+    //this.game.context.drawImage(syringe, this.x, this.y,this.width,this.height);
     this.game.context.fillRect(this.x, this.y, this.width, this.height);
 
     this.game.context.restore();
   }
 
   runLogic() {
-    this.y -= 4;
+    this.y -= 5;
 
     // for (let z = 0; z < this.game.shoots.length; z++) {
     //   for (let i = 0; i < this.game.ball.length; i++) {
@@ -33,7 +35,7 @@ class Shoot {
     //       this.game.generateTinyBall(3,this.game.ball[i].startingPointx,this.game.ball[i].startingPointy);
     //       this.game.ball.splice(i, 1);
     //       this.game.shoots.splice(z, 1);
-         
+
     //     }
     //   }
     // }
@@ -42,24 +44,32 @@ class Shoot {
       let shootIndex = this.game.shoots.indexOf(shoot);
       if (shoot.y < 0) {
         this.game.shoots.splice(shootIndex, 1);
-        console.log(`Funciona`);
       }
 
       this.game.ball.forEach((_ball) => {
         let ballIndex = this.game.ball.indexOf(_ball);
         if (
-          (this.x + this.width > _ball.startingPointx &&
-            this.x < _ball.startingPointx + _ball.radius &&
-            this.y + this.height > _ball.startingPointy &&
-            this.y < _ball.startingPointy + _ball.radius)
+          this.x + this.width > _ball.startingPointx &&
+          this.x < _ball.startingPointx + _ball.radius &&
+          this.y + this.height > _ball.startingPointy &&
+          this.y < _ball.startingPointy + _ball.radius
         ) {
-          if (_ball.radius > 30) {
-            this.game.generateTinyBall(-3,_ball.startingPointx,_ball.startingPointy);
-            this.game.generateTinyBall(3,_ball.startingPointx,_ball.startingPointy);
+          if (_ball.radius > 20) {
+            this.game.generateTinyBall(
+              -3,
+              _ball.startingPointx,
+              _ball.startingPointy
+            );
+            this.game.generateTinyBall(
+              3,
+              _ball.startingPointx,
+              _ball.startingPointy
+            );
+            this.game.score += 10;
           }
+          else{this.game.score += 20}
           this.game.ball.splice(ballIndex, 1);
           this.game.shoots.splice(shootIndex, 1);
-
           
         }
       });
