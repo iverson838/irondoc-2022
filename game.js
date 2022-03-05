@@ -11,11 +11,12 @@ class Game {
     this.context = canvasBoard.getContext('2d');
     this.screens = screens;
 
-    this.score = 0;
+    
     this.enableControls();
   }
 
   start() {
+    this.score = 0;
     this.player = new Player(this);
     this.shoots = [];
     this.ball = [new Ball(this)];
@@ -51,7 +52,7 @@ class Game {
     let ball = new Ball(this);
     newball.play();
 
-    ball.radius = -15;
+    ball.radius = -40;
     ball.startingPointy = y - 90;
     ball.startingPointx = x;
     ball.gravityx = dir;
@@ -86,9 +87,7 @@ class Game {
       let time = new Date();
       let timeSeconds = time.getSeconds();
 
-      if (code === 'Space') {
-      }
-
+      
       switch (code) {
         case 'ArrowRight':
           if (this.player.x < 1250) this.player.x += 20;
@@ -101,17 +100,20 @@ class Game {
           break;
 
         case 'Space':
+          
           let diference = timeSeconds - spaceTimer;
-          if (diference < 0) {
-            diference = 0;
+          if (diference <= 0) {
+            diference = 0.1;
           } else {
             if (diference > 0.3) {
               this.shoot();
               spaceTimer = timeSeconds;
             }
           }
+          console.log(diference)
+          console.log(code)
 
-          break;
+          
       }
     });
   }

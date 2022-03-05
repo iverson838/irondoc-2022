@@ -46,7 +46,7 @@ class Ball {
         imageVirus,
         this.startingPointx,
         this.startingPointy,
-        50,
+        47,
         47
       );
     }
@@ -57,7 +57,7 @@ class Ball {
     this.startingPointy += this.gravity;
     this.startingPointx += this.gravityx;
 
-    if (this.startingPointy > 700 || this.startingPointy < 50) {
+    if (this.startingPointy > 700 || this.startingPointy < 0) {
       this.gravity *= -1;
     }
 

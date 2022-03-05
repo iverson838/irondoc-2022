@@ -7,7 +7,7 @@ class Player {
       this.game = game;
       this.x = 750;
       this.y = 650;
-      this.widthPlayer = 172;
+      this.widthPlayer = 165;
       this.heightPlayer = 200;
 
     
