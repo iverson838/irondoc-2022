@@ -14,6 +14,7 @@ class Shoot {
     this.game.context.save();
 
     //this.game.context.drawImage(syringe, this.x, this.y,this.width,this.height);
+    this.game.context.fillStyle = 'red'
     this.game.context.fillRect(this.x, this.y, this.width, this.height);
 
     this.game.context.restore();
@@ -49,24 +50,25 @@ class Shoot {
       this.game.ball.forEach((_ball) => {
         let ballIndex = this.game.ball.indexOf(_ball);
         if (
-          this.x + this.width > _ball.startingPointx &&
-          this.x < _ball.startingPointx + _ball.radius &&
-          this.y + this.height > _ball.startingPointy &&
-          this.y < _ball.startingPointy + _ball.radius
+          shoot.x + shoot.width > _ball.startingPointx &&
+          shoot.x < _ball.startingPointx + _ball.width &&
+          shoot.y + shoot.height > _ball.startingPointy &&
+          shoot.y < _ball.startingPointy + _ball.width
         ) {
           if (_ball.radius > 20) {
             this.game.generateTinyBall(
               -3,
               _ball.startingPointx,
-              _ball.startingPointy
+              _ball.startingPointy+50
             );
             this.game.generateTinyBall(
               3,
               _ball.startingPointx,
-              _ball.startingPointy
+              _ball.startingPointy+50
             );
             this.game.score += 10;
           }
+         
           else{this.game.score += 20}
           this.game.ball.splice(ballIndex, 1);
           this.game.shoots.splice(shootIndex, 1);

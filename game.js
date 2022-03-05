@@ -56,10 +56,6 @@ class Game {
     this.ball.push(ball);
   }
 
-  gerateBall2() {
-    const ball2 = new Ball2(this);
-    this.ball2.push(ball2);
-  }
 
   loop() {
     window.requestAnimationFrame(() => {
@@ -71,11 +67,15 @@ class Game {
       this.draw();
 
       if (Math.floor(Math.random() * 1000) > 996) {
+        // if (this.ball.length <= 1) {
         this.gerateBall();
       }
       
 game.player.draw();
-      this.loop();
+if (this.running) {
+  this.loop();
+}
+      //this.loop();
     });
   }
 
@@ -139,7 +139,7 @@ game.player.draw();
   }
 
   drawScore() {
-    this.context.fillStyle = 'white'
+    this.context.fillStyle = 'red'
     this.context.font = '40px monospace';
     
     this.context.fillText(`Virus Killed: ${this.score}`, 30, 740);

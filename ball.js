@@ -3,16 +3,18 @@ const image = new Image();
 image.src = './img/layer1.png';
 
 const imageVirus = new Image();
-imageVirus.src = './img/Background.png';
+imageVirus.src = './img/virus2.png';
 
 class Ball {
   constructor(gameBall) {
     this.game = gameBall;
 
-    this.gravity = 4;
+    this.gravity = 5;
     this.gravityx = 3;
-    this.radius = 29;
-    this.startingPointy = Math.floor(Math.random() * (500 - 200)) + 200;
+    this.radius = 40;
+    this.width = 100;
+    this.height = 102;
+    this.startingPointy = Math.floor(Math.random() * (50 - 100)) + 100;
     this.startingPointx = Math.floor(Math.random() * 1200);
   }
 
@@ -28,7 +30,7 @@ class Ball {
 
     //  this.game.context.fill();
 
-    if(this.radius > 28){
+     if(this.radius > 28){
 
     this.game.context.drawImage(
       image,
@@ -69,13 +71,19 @@ class Ball {
   }
 
   checkIntersection() {
-    if (
-      this.game.player.x + this.game.player.widthPlayer > this.startingPointx &&
-      this.game.player.x < this.startingPointx + this.radius &&
-      this.game.player.y + this.game.player.heightPlayer >
-        this.startingPointy &&
-      this.game.player.y < this.startingPointy + this.radius
-    ) {
+    // if (
+    //   this.game.player.x + this.game.player.widthPlayer > this.startingPointx &&
+    //   this.game.player.x < this.startingPointx + this.width &&
+    //   this.game.player.y + this.game.player.heightPlayer >
+    //     this.startingPointy &&
+    //   this.game.player.y < this.startingPointy + this.width
+    // )
+    
+    if( this.startingPointx + this.radius > this.game.player.x &&
+      this.startingPointx < this.game.player.x +this.game.player.widthPlayer &&
+      this.startingPointy + this.radius > this.game.player.y &&
+      this.startingPointy < this.game.player.y + this.game.player.heightPlayer)
+    {
       gameOver.play();
 
       this.game.lose();
