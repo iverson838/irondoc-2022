@@ -13,9 +13,31 @@ body {
   font-family: monospace;
 }
 
+#game-over-screen h3{
+  font-size: 80px;
+}
+
+#game-over-screen div {
+  font-size: 35px;
+  color: red;
+  font-weight: bold;
+
+  
+}
+
+#texto{
+  margin-left: 75px;
+}
+
+#final {
+  margin-left: 100px;
+  margin-top: 200px;
+}
+ 
+
 
 .screen {
-  background-color: gray;
+  background-color:darkslategrey;
   width: 1400px;
   height: 800px;
   display: flex;
@@ -31,8 +53,32 @@ canvas {
 
 }
 
-#start-screen {
-  background-image: url('./img/start_screen_background.png');
+#start-screen{
+  background-image: url('./img/intro.png');
   background-position: center;
   background-size: cover;
+}
+
+
+
+
+#game-over-screen {
+
+  background-image: url('./img/background_end.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.button {
+  border: none;
+  background: url('/img/game_start_button.png') no-repeat left;
+  margin-top: 450px;
+  width: 300px;
+  height: 200px;
+  padding: 2px 8px;
+}
+
+#tryAgain{
+  margin-top: 150px;
+
 }

@@ -11,15 +11,22 @@
     
     
     <div class="screen" id="start-screen">
-        <h1>IRONDOC</h1>
-        <button>Start Game</button>
+        
+        <button class="button"></button>
       </div>
       <div class="screen" id="playing-screen" style="display: none;">
         <canvas width="1400" height="800"></canvas>
       </div>
       <div class="screen" id="game-over-screen" style="display: none;">
         <h3>Game Over</h3>
-        <button>Try Again</button>
+        <div id="texto">
+          Opps,  you loose.....
+          <br>
+          Next time don't let them touch you!
+
+          <div id="final">Your score was : <span id="score"></span></div>
+        </div>
+        <button id="tryAgain">Try Again</button>
       </div>
   
     

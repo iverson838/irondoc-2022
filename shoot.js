@@ -6,22 +6,22 @@ class Shoot {
     this.game = gameInstance;
     this.x = x;
     this.y = y;
-    this.width = 20;
-    this.height = 40;
+    this.width = 5;
+    this.height = 45;
   }
 
   draw() {
     this.game.context.save();
 
-    //this.game.context.drawImage(syringe, this.x, this.y,this.width,this.height);
-    this.game.context.fillStyle = 'red'
-    this.game.context.fillRect(this.x, this.y, this.width, this.height);
+    this.game.context.drawImage(syringe, this.x, this.y,this.width,this.height);
+    //this.game.context.fillStyle = 'red'
+    //this.game.context.fillRect(this.x, this.y, this.width, this.height);
 
     this.game.context.restore();
   }
 
   runLogic() {
-    this.y -= 5;
+    this.y -= 7;
 
     // for (let z = 0; z < this.game.shoots.length; z++) {
     //   for (let i = 0; i < this.game.ball.length; i++) {

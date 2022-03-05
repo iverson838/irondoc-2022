@@ -3,7 +3,7 @@ const image = new Image();
 image.src = './img/layer1.png';
 
 const imageVirus = new Image();
-imageVirus.src = './img/virus2.png';
+imageVirus.src = './img/virus2_teste.png';
 
 class Ball {
   constructor(gameBall) {
@@ -11,7 +11,7 @@ class Ball {
 
     this.gravity = 5;
     this.gravityx = 3;
-    this.radius = 40;
+    this.radius = 30;
     this.width = 100;
     this.height = 102;
     this.startingPointy = Math.floor(Math.random() * (50 - 100)) + 100;
@@ -41,12 +41,15 @@ class Ball {
     );
 
   } else {
+    this.width = 30;
+    this.height = 20;
+    
     this.game.context.drawImage(
       imageVirus,
       this.startingPointx,
       this.startingPointy,
-      100,
-      102
+      50,
+      47
     );
   }
     this.game.context.restore();

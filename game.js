@@ -36,6 +36,8 @@ class Game {
 
   lose () {
     this.running = false;
+    document.getElementById('score').innerHTML = this.score
+    
     this.displayScreen('end');
   }
 
@@ -49,8 +51,8 @@ class Game {
     let ball = new Ball(this);
     newball.play();
 
-    ball.radius = 15;
-    ball.startingPointy = y;
+    ball.radius = -15;
+    ball.startingPointy = y -90;
     ball.startingPointx = x;
     ball.gravityx = dir;
     this.ball.push(ball);
@@ -110,8 +112,7 @@ if (this.running) {
             spaceTimer = timeSeconds;
           }
         }
-        console.log(diference)
-        console.log(spaceTimer)
+        
         break;
       }
       
