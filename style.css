@@ -14,7 +14,7 @@ body {
 }
 
 #game-over-screen h3{
-  font-size: 80px;
+  font-size: 40px;
 }
 
 #game-over-screen div {
@@ -79,6 +79,10 @@ canvas {
 }
 
 #tryAgain{
-  margin-top: 150px;
+  margin-top: px;
 
+}
+
+img {
+  margin-left: 800px;
 }

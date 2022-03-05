@@ -1,43 +1,43 @@
 //create a DOM element
 
-
-
-
 let spaceTimer = 0;
 const lasershoot = new Audio('./sounds/lasershoot.wav');
 const newball = new Audio('./sounds/pop.wav');
 
 class Game {
-  constructor(canvasBoard,screens) {
+  constructor(canvasBoard, screens) {
+    this.running = false;
     this.canvas = canvasBoard;
     this.context = canvasBoard.getContext('2d');
     this.screens = screens;
-    this.running = false;
+
     this.score = 0;
+    this.enableControls();
+  }
+
+  start() {
     this.player = new Player(this);
     this.shoots = [];
     this.ball = [new Ball(this)];
-    this.enableControls(); 
-  }
-  start () {
+
     this.running = true;
-   
+
     this.displayScreen('playing');
 
     this.loop();
   }
 
-  displayScreen (name) {
+  displayScreen(name) {
     for (let screenName in this.screens) {
-      this.screens[screenName].style.display = 'none'
+      this.screens[screenName].style.display = 'none';
     }
     this.screens[name].style.display = '';
   }
 
-  lose () {
+  lose() {
+    document.getElementById('score').innerHTML = this.score;
     this.running = false;
-    document.getElementById('score').innerHTML = this.score
-    
+
     this.displayScreen('end');
   }
 
@@ -52,12 +52,11 @@ class Game {
     newball.play();
 
     ball.radius = -15;
-    ball.startingPointy = y -90;
+    ball.startingPointy = y - 90;
     ball.startingPointx = x;
     ball.gravityx = dir;
     this.ball.push(ball);
   }
-
 
   loop() {
     window.requestAnimationFrame(() => {
@@ -72,11 +71,11 @@ class Game {
         // if (this.ball.length <= 1) {
         this.gerateBall();
       }
-      
-game.player.draw();
-if (this.running) {
-  this.loop();
-}
+
+      game.player.draw();
+      if (this.running) {
+        this.loop();
+      }
       //this.loop();
     });
   }
@@ -92,30 +91,28 @@ if (this.running) {
 
       switch (code) {
         case 'ArrowRight':
-          if(this.player.x < 1250)
-          this.player.x += 20;
+          if (this.player.x < 1250) this.player.x += 20;
           break;
 
         case 'ArrowLeft':
-          if(this.player.x > 0) {
-          this.player.x -= 20;
-        }
+          if (this.player.x > 0) {
+            this.player.x -= 20;
+          }
           break;
 
         case 'Space':
           let diference = timeSeconds - spaceTimer;
-           if(diference < 0){
-             diference = 0;
+          if (diference < 0) {
+            diference = 0;
           } else {
-          if (diference > 0.3) {
-            this.shoot();
-            spaceTimer = timeSeconds;
+            if (diference > 0.3) {
+              this.shoot();
+              spaceTimer = timeSeconds;
+            }
           }
-        }
-        
-        break;
+
+          break;
       }
-      
     });
   }
 
@@ -140,9 +137,9 @@ if (this.running) {
   }
 
   drawScore() {
-    this.context.fillStyle = 'red'
+    this.context.fillStyle = 'red';
     this.context.font = '40px monospace';
-    
+
     this.context.fillText(`Virus Killed: ${this.score}`, 30, 740);
   }
 
@@ -160,7 +157,4 @@ if (this.running) {
   }
 }
 
-
-
 //game.loop();
-

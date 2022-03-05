@@ -30,28 +30,26 @@ class Ball {
 
     //  this.game.context.fill();
 
-     if(this.radius > 28){
+    if (this.radius > 28) {
+      this.game.context.drawImage(
+        image,
+        this.startingPointx,
+        this.startingPointy,
+        100,
+        102
+      );
+    } else {
+      this.width = 30;
+      this.height = 20;
 
-    this.game.context.drawImage(
-      image,
-      this.startingPointx,
-      this.startingPointy,
-      100,
-      102
-    );
-
-  } else {
-    this.width = 30;
-    this.height = 20;
-    
-    this.game.context.drawImage(
-      imageVirus,
-      this.startingPointx,
-      this.startingPointy,
-      50,
-      47
-    );
-  }
+      this.game.context.drawImage(
+        imageVirus,
+        this.startingPointx,
+        this.startingPointy,
+        50,
+        47
+      );
+    }
     this.game.context.restore();
   }
 
@@ -81,15 +79,21 @@ class Ball {
     //     this.startingPointy &&
     //   this.game.player.y < this.startingPointy + this.width
     // )
-    
-    if( this.startingPointx + this.radius > this.game.player.x &&
-      this.startingPointx < this.game.player.x +this.game.player.widthPlayer &&
+
+    if (
+      this.startingPointx + this.radius > this.game.player.x &&
+      this.startingPointx < this.game.player.x + this.game.player.widthPlayer &&
       this.startingPointy + this.radius > this.game.player.y &&
-      this.startingPointy < this.game.player.y + this.game.player.heightPlayer)
-    {
+      this.startingPointy < this.game.player.y + this.game.player.heightPlayer
+    ) {
       gameOver.play();
 
       this.game.lose();
+
+      gameOver.pause();
     }
+
+
+    
   }
 }

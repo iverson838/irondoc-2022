@@ -10,7 +10,7 @@ class Player {
       this.widthPlayer = 172;
       this.heightPlayer = 200;
 
-      console.log(this.x)
+    
       
     }
   
