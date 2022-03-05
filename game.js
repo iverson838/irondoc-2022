@@ -103,11 +103,12 @@ class Game {
           
           let diference = timeSeconds - spaceTimer;
           if (diference <= 0) {
-            diference = 0.1;
+            diference = 0.4;
           } else {
             if (diference > 0.3) {
               this.shoot();
               spaceTimer = timeSeconds;
+              
             }
           }
           console.log(diference)
